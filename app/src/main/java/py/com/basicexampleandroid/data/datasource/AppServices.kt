@@ -8,7 +8,7 @@ interface AppServices {
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
-        @Query("page") page: Int,
+        @Query("page") page: Int = 1,
         @Query("language") language: String = "en-US"
     ) : PopularityMoviesDto
 }

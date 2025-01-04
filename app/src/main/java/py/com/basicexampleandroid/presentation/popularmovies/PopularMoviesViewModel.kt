@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import py.com.basicexampleandroid.domain.Resource
-import py.com.basicexampleandroid.domain.model.PopularityMoviesModel
+import py.com.basicexampleandroid.domain.model.MovieModel
 import py.com.basicexampleandroid.domain.usecase.FetchPopularMoviesUseCase
 import py.com.basicexampleandroid.presentation.base.BaseViewModel
 import javax.inject.Inject
@@ -14,13 +14,13 @@ import javax.inject.Inject
 class PopularMoviesViewModel @Inject constructor(
     private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
 ) : BaseViewModel() {
-    val popularMovies: MutableLiveData<PopularityMoviesModel> by lazy {
-        MutableLiveData<PopularityMoviesModel>()
+    val popularMovies: MutableLiveData<List<MovieModel>> by lazy {
+        MutableLiveData<List<MovieModel>>()
     }
 
-    fun fetchPopularMovies(page: Int) {
+    fun fetchPopularMovies() {
         viewModelScope.launch {
-            fetchPopularMoviesUseCase(page).collect {
+            fetchPopularMoviesUseCase().collect {
                 when (it) {
                     is Resource.Loading -> {
                         isLoading.value = true

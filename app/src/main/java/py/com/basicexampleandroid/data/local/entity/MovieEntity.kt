@@ -1,15 +1,15 @@
-package py.com.basicexampleandroid.domain.model
+package py.com.basicexampleandroid.data.local.entity
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import py.com.basicexampleandroid.data.local.entity.MovieEntity
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import py.com.basicexampleandroid.domain.model.MovieModel
 
-@Parcelize
-data class MovieModel(
+@Entity(tableName = "movie_table")
+data class MovieEntity(
+    @PrimaryKey val id: Int,
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,
-    val id: Int,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
@@ -21,11 +21,10 @@ data class MovieModel(
     val voteAverage: Double,
     val voteCount: Int,
     val rating: Int
-) : Parcelable
+)
 
-
-fun MovieModel.toEntity(): MovieEntity {
-    return MovieEntity(
+fun MovieEntity.toModel(): MovieModel {
+    return MovieModel(
         id = id,
         adult = adult,
         backdropPath = backdropPath,

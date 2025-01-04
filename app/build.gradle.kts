@@ -83,4 +83,10 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+
+    //Room Database
+    implementation(libs.room.common)
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 }

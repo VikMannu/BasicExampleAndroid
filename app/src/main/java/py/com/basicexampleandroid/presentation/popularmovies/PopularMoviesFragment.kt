@@ -39,13 +39,13 @@ class PopularMoviesFragment : BaseFragment() {
 
         navController = Navigation.findNavController(view)
         setupBindings()
-        viewModel.fetchPopularMovies(1)
+        viewModel.fetchPopularMovies()
     }
 
     private fun setupBindings() {
         viewModel.popularMovies.observe(viewLifecycleOwner) {
             // Handle popular movies
-            setupRecyclerView(it.results)
+            setupRecyclerView(it)
         }
     }
 
